@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Не сплю — ИИ-интегратор для бизнеса. Боты, сайты, аудит</title>
-<meta name="description" content="Внедряю ИИ в бизнес-процессы: веб-приложения записи, Telegram-боты, сайты и лендинги, аудит процессов, голосовые помощники. Артём и Владивосток. Работаю напрямую, самозанятый.">
+<meta name="description" content="Внедряю ИИ в бизнес-процессы: веб-приложения записи, Telegram-боты, сайты и лендинги, аудит процессов, голосовые помощники. Работаю по всей России, в том числе удалённо.">
 <meta name="theme-color" content="#0A0910">
 <meta property="og:title" content="Не сплю — ИИ-интегратор. Боты, сайты, аудит">
 <meta property="og:description" content="Внедряю ИИ в бизнес-процессы: приложения записи, боты, сайты, аудит. Работает 24/7.">
@@ -43,14 +43,14 @@
   --acc-deep:#3E2A73;
   --on-acc:#F4F1FF;
 
-  --brass:#C4A052;
-  --brass-soft:rgba(196,160,82,.14);
+  --brass:#E8C878;
+  --brass-soft:rgba(232,200,120,.16);
 
   --ok:#3FCF8E;
 
   --r-xl:28px; --r:22px; --r-md:16px; --r-sm:12px;
   --r-pill:999px;
-  --wrap:1120px;
+  --wrap:1400px;
   --ease:cubic-bezier(.22,1,.36,1);
 
   --sh:0 24px 60px -24px rgba(0,0,0,.85), 0 8px 24px -12px rgba(0,0,0,.7);
@@ -101,14 +101,17 @@ a{color:inherit;text-decoration:none}
   background:rgba(8,7,14,.9);border-bottom:1px solid var(--hairline);
   font-size:12.5px;color:var(--muted);position:relative;z-index:20;
 }
-.strip .wrap{display:flex;gap:10px;align-items:center;padding:9px 22px;flex-wrap:wrap}
+.strip .wrap{display:flex;gap:9px;align-items:center;padding:9px 22px;flex-wrap:nowrap;
+  overflow:hidden;white-space:nowrap;font-size:12.5px}
+.strip .hide-sm{display:inline}
 .strip .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);flex:none;
   box-shadow:0 0 0 3px rgba(63,207,142,.16);animation:blink 2.6s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
 .strip b{color:var(--acc-lite);font-weight:600}
 
 /* ── шапка: стеклянная пилюля ── */
-.navwrap{position:sticky;top:0;z-index:40;padding:12px 22px 0}
+.navwrap{position:sticky;top:0;z-index:40;padding:12px 22px 0;
+  transition:padding .3s var(--ease)}
 header{
   max-width:var(--wrap);margin:0 auto;
   display:flex;align-items:center;gap:16px;
@@ -154,8 +157,8 @@ header .btn-tg svg{width:16px;height:16px}
 }
 .hero .badge i{width:6px;height:6px;border-radius:50%;background:var(--acc-lite);animation:blink 2.6s infinite}
 .hero h1{
-  font-size:clamp(38px,6.4vw,74px);font-weight:600;
-  letter-spacing:-.045em;line-height:1.02;margin:0 auto;max-width:16ch;
+  font-size:clamp(32px,4.6vw,56px);font-weight:600;
+  letter-spacing:-.042em;line-height:1.08;margin:0 auto;max-width:22ch;
 }
 .hero h1 em{font-style:normal;color:var(--acc-lite)}
 .hero .lead{
@@ -196,6 +199,18 @@ section{padding:104px 0 0}
   line-height:1.12;max-width:24ch;margin-bottom:14px}
 .sec-sub{color:var(--body);max-width:62ch;font-size:16.5px}
 
+/* ── блок с фоновой картинкой ── */
+.has-bg{position:relative;overflow:hidden}
+.has-bg::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background-image:url('img/bg-services.jpg');
+  background-size:cover;background-position:center;
+  opacity:.16;filter:grayscale(.5) contrast(1.1) brightness(.7);
+  mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
+}
+.has-bg .wrap{position:relative;z-index:1}
+
 /* ── карточки услуг ── */
 .grid{display:grid;gap:14px;margin-top:34px}
 .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -218,7 +233,7 @@ section{padding:104px 0 0}
 .card p{color:var(--body);font-size:14.5px;line-height:1.6}
 .card .price{
   display:inline-block;margin-top:18px;padding:7px 14px;border-radius:var(--r-pill);
-  background:var(--brass-soft);border:1px solid rgba(196,160,82,.24);
+  background:var(--brass-soft);border:1px solid rgba(232,200,120,.32);
   font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--brass);
 }
 
@@ -279,6 +294,8 @@ footer .lbl{letter-spacing:.1em}
   .stats{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:720px){
+  .strip .hide-sm{display:none}
+  .strip .wrap{justify-content:center;padding:8px 14px}
   header nav{display:none}
   .burger{display:grid;place-items:center}
   header{padding:9px 9px 9px 16px}
@@ -297,10 +314,10 @@ footer .lbl{letter-spacing:.1em}
   <div class="wrap">
     <span class="dot"></span>
     <span>Свободен для новых проектов</span>
-    <span style="opacity:.4">·</span>
-    <span>Артём и Владивосток, работаю и удалённо</span>
-    <span style="opacity:.4">·</span>
-    <b>самозанятый, без посредников</b>
+    <span class="hide-sm" style="opacity:.4">·</span>
+    <span class="hide-sm">работаю по всей России и удалённо</span>
+    <span class="hide-sm" style="opacity:.4">·</span>
+    <b class="hide-sm">самозанятый, без посредников</b>
   </div>
 </div>
 
@@ -316,6 +333,8 @@ footer .lbl{letter-spacing:.1em}
       <a href="#services">Что мы делаем</a>
       <a href="#how">Как работаем</a>
       <a href="#works">Работы</a>
+      <a href="#why">Почему я</a>
+      <a href="#numbers">Результат</a>
       <a href="#contact">Связаться</a>
     </nav>
     <a class="btn-tg" href="https://t.me/nesplyu_bot" target="_blank" rel="noopener">
@@ -333,7 +352,7 @@ footer .lbl{letter-spacing:.1em}
   <!-- ═══ ГЕРОЙ ═══ -->
   <div class="wrap">
     <div class="hero">
-      <span class="badge reveal"><i></i>ИИ-интегратор · Артём / Владивосток</span>
+      <span class="badge reveal"><i></i>ИИ-интегратор для малого и среднего бизнеса</span>
       <h1 class="reveal">Внедряю ИИ <em>в ваш бизнес</em>, чтобы процессы работали сами</h1>
       <p class="lead reveal">
         Делаю приложения для записи, чат-ботов, сайты и лендинги. Провожу аудит процессов
@@ -357,7 +376,7 @@ footer .lbl{letter-spacing:.1em}
   </div>
 
   <!-- ═══ ЧТО ДЕЛАЕМ ═══ -->
-  <section id="services">
+  <section id="services" class="has-bg">
     <div class="wrap">
       <div class="sec-head reveal"><h2>01 · Что мы делаем</h2><span class="rule"></span></div>
       <h2 class="sec-lead reveal">Семь направлений — от страницы записи до аудита процессов</h2>
@@ -447,6 +466,55 @@ footer .lbl{letter-spacing:.1em}
     </div>
   </section>
 
+
+  <!-- ═══ ПОЧЕМУ Я ═══ -->
+  <section id="why">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>04 · Почему со мной удобно</h2><span class="rule"></span></div>
+      <h2 class="sec-lead reveal">Работаю напрямую, отвечаю лично и не беру денег за то, чего вы не видели</h2>
+
+      <div class="grid grid-2" style="margin-top:34px">
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+          <h3>Сначала показываю, потом беру деньги</h3>
+          <p>Собираю рабочий пример на вашем бизнесе. Вы смотрите, пишете боту, открываете приложение с телефона. Платите только если подошло — первые 3 дня бесплатно.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Работаю по договору и выдаю чек</h3>
+          <p>Я самозанятый. По каждой сделке приходит чек через «Мой налог» — вам не нужно ничего оформлять и никуда ходить.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/></svg></div>
+          <h3>Без посредников и наценок агентства</h3>
+          <p>Вы общаетесь напрямую с тем, кто делает. Никаких менеджеров, которые передают задачу и портят сроки. Правки принимаю лично.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></svg></div>
+          <h3>Запускаю за 1–2 дня</h3>
+          <p>У меня готовый движок — не пишу с нуля. Поэтому быстро и без риска. От вас нужен только прайс и куда присылать заявки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ЦИФРЫ ═══ -->
+  <section id="numbers">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>05 · Что это даёт</h2><span class="rule"></span></div>
+      <div class="stats reveal" style="margin-top:34px">
+        <div class="stat"><b><em>24/7</em></b><span class="lbl">заявки принимаются ночью и в выходные</span></div>
+        <div class="stat"><b>0</b><span class="lbl">пропущенных обращений</span></div>
+        <div class="stat"><b><em>1</em> клиент</b><span class="lbl">окупает месяц работы</span></div>
+        <div class="stat"><b>1–2 дня</b><span class="lbl">от разговора до запуска</span></div>
+      </div>
+      <div class="quote reveal" style="margin-top:26px">
+        <p>«Клиент, который вечером не дозвонился, не оставит заявку потом. Он просто уедет к тому, кто ответил в мессенджере. Одно приложение закрывает эту дыру».</p>
+        <div class="who">Из практики · Не сплю</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ КОНТАКТ ═══ -->
   <section id="contact">
     <div class="wrap">
@@ -460,7 +528,7 @@ footer .lbl{letter-spacing:.1em}
           </a>
           <a class="btn btn-ghost" href="https://wa.me/79240001122" target="_blank" rel="noopener">WhatsApp</a>
         </div>
-        <p class="note lbl" style="color:var(--muted)">Отвечаю лично · Артём и Владивосток · работаю и удалённо</p>
+        <p class="note lbl" style="color:var(--muted)">Отвечаю лично · работаю по всей России и удалённо</p>
       </div>
     </div>
   </section>
@@ -470,7 +538,7 @@ footer .lbl{letter-spacing:.1em}
 <footer>
   <div class="wrap">
     <span class="lbl">Не сплю · ИИ-интегратор · самозанятый</span>
-    <span class="lbl">© 2026 · Артём, Приморский край</span>
+    <span class="lbl">© 2026 · работаю по всей России и удалённо</span>
   </div>
 </footer>
 
