@@ -200,19 +200,19 @@ section{padding:104px 0 0}
   line-height:1.12;max-width:24ch;margin-bottom:14px}
 .sec-sub{color:var(--body);max-width:62ch;font-size:16.5px}
 
-/* ── блок с фоновой картинкой (звёздное небо) ── */
+/* ── блок с фоновой картинкой (Земля из космоса) ── */
 .has-bg{position:relative;overflow:hidden}
 .has-bg::before{
   content:'';position:absolute;inset:0;z-index:0;
-  background-image:url('img/bg-stars.jpg');
+  background-image:url('img/bg-services.jpg');
   background-size:cover;background-position:center;
-  opacity:.35;filter:brightness(.55) contrast(1.1) saturate(.7);
+  opacity:.22;filter:brightness(.62) contrast(1.05) saturate(.75);
   mask-image:linear-gradient(180deg,transparent,#000 15%,#000 85%,transparent);
   -webkit-mask-image:linear-gradient(180deg,transparent,#000 15%,#000 85%,transparent);
 }
 .has-bg .wrap{position:relative;z-index:1}
 
-/* звёздный фон за контактным блоком */
+/* звёздное небо за контактным блоком */
 #contact{position:relative;overflow:hidden}
 #contact::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
