@@ -43,8 +43,8 @@
   --acc-deep:#3E2A73;
   --on-acc:#F4F1FF;
 
-  --brass:#E8C878;
-  --brass-soft:rgba(232,200,120,.16);
+  --brass:#F5DFA0;
+  --brass-soft:rgba(245,223,160,.18);
 
   --ok:#3FCF8E;
 
@@ -110,7 +110,7 @@ a{color:inherit;text-decoration:none}
 .strip b{color:var(--acc-lite);font-weight:600}
 
 /* ── шапка: стеклянная пилюля ── */
-.navwrap{position:sticky;top:0;z-index:40;padding:12px 22px 0;
+.navwrap{position:relative;z-index:40;padding:12px 22px 0;
   transition:padding .3s var(--ease)}
 header{
   max-width:var(--wrap);margin:0 auto;
@@ -211,6 +211,30 @@ section{padding:104px 0 0}
 }
 .has-bg .wrap{position:relative;z-index:1}
 
+/* ── фото-блоки в две колонки ── */
+.feature{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center;margin-top:34px}
+.feature.rev{grid-template-columns:1fr 1.05fr}
+.feature .pic{
+  border-radius:var(--r);overflow:hidden;border:1px solid var(--hairline);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), var(--sh);position:relative;
+}
+.feature .pic img{width:100%;height:330px;object-fit:cover;display:block;
+  filter:saturate(.85) contrast(1.06);transition:.5s var(--ease)}
+.feature .pic:hover img{transform:scale(1.03)}
+.feature .txt h3{font-size:clamp(21px,2.6vw,30px);font-weight:600;letter-spacing:-.038em;line-height:1.14;margin-bottom:14px}
+.feature .txt p{color:var(--body);font-size:15.5px;line-height:1.65}
+.feature .txt ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.feature .txt li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--body)}
+.feature .txt li::before{content:'';flex:0 0 6px;width:6px;height:6px;border-radius:50%;
+  background:var(--acc-lite);margin-top:8px}
+
+/* ── лента фото ── */
+.photoband{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:34px}
+.photoband img{width:100%;height:170px;object-fit:cover;border-radius:var(--r-md);
+  border:1px solid var(--hairline);filter:saturate(.8) contrast(1.05);
+  transition:.35s var(--ease)}
+.photoband img:hover{filter:saturate(1) contrast(1.1);transform:translateY(-4px)}
+
 /* ── карточки услуг ── */
 .grid{display:grid;gap:14px;margin-top:34px}
 .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -304,6 +328,10 @@ footer .lbl{letter-spacing:.1em}
   .burger{display:grid;place-items:center}
   header{padding:9px 9px 9px 16px}
   .grid-3,.grid-2,.gallery{grid-template-columns:1fr}
+  .feature,.feature.rev{grid-template-columns:1fr;gap:18px}
+  .feature .pic img{height:225px}
+  .photoband{grid-template-columns:repeat(2,1fr)}
+  .photoband img{height:130px}
   .steps{grid-template-columns:1fr}
   section{padding-top:76px}
   .hero{padding-top:52px}
@@ -336,6 +364,7 @@ footer .lbl{letter-spacing:.1em}
     <nav>
       <a href="#services">Что мы делаем</a>
       <a href="#how">Как работаем</a>
+      <a href="#look">Примеры</a>
       <a href="#works">Работы</a>
       <a href="#why">Почему я</a>
       <a href="#numbers">Результат</a>
@@ -357,7 +386,7 @@ footer .lbl{letter-spacing:.1em}
   <div class="wrap">
     <div class="hero">
       <span class="badge reveal"><i></i>ИИ-интегратор для малого и среднего бизнеса</span>
-      <h1 class="reveal">Внедряю ИИ <em>в ваш бизнес</em>, чтобы процессы работали сами</h1>
+      <h1 class="reveal">Внедряю ИИ <em>в ваш бизнес</em>, <em>чтобы процессы работали сами</em></h1>
       <p class="lead reveal">
         Делаю приложения для записи, чат-ботов, сайты и лендинги. Провожу аудит процессов
         и показываю, где вы теряете клиентов и деньги. Работаю напрямую — без агентств и наценок.
@@ -427,10 +456,51 @@ footer .lbl{letter-spacing:.1em}
     </div>
   </section>
 
+
+  <!-- ═══ ФОТО: КАК ЭТО ВЫГЛЯДИТ ═══ -->
+  <section id="look">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>02 · Как это выглядит</h2><span class="rule"></span></div>
+
+      <div class="feature reveal">
+        <div class="pic"><img src="img/f-laptop.jpg" alt="Разработка решения" loading="lazy"></div>
+        <div class="txt">
+          <h3>Вы получаете готовое решение, а не набор настроек</h3>
+          <p>Я собираю всё сам — от страницы записи до бота в мессенджере. Вам не нужно разбираться в технике, устанавливать программы и регистрироваться где-то ещё.</p>
+          <ul>
+            <li>Настраиваю под ваш прайс и ваши услуги</li>
+            <li>Проверяю на живых сценариях до сдачи</li>
+            <li>Отдаю ссылку и объясняю, как этим пользоваться</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature rev reveal" style="margin-top:44px">
+        <div class="txt">
+          <h3>Работаю с малым бизнесом — там, где всё решается быстро</h3>
+          <p>Никаких согласований с юристами и отделами. Вы говорите, что нужно, я делаю. Если что-то меняется по ходу — правим на месте, без бюрократии.</p>
+          <ul>
+            <li>Один человек — один ответственный, без «передам коллеге»</li>
+            <li>Правки прайса и текстов — бесплатно 3 дня после сдачи</li>
+            <li>Договор и чек по каждой сделке</li>
+          </ul>
+        </div>
+        <div class="pic"><img src="img/f-meeting.jpg" alt="Работа с клиентом" loading="lazy"></div>
+      </div>
+
+      <div class="photoband reveal">
+        <img src="img/f-desk.jpg" alt="Рабочее место" loading="lazy">
+        <img src="img/f-analytics.jpg" alt="Аналитика" loading="lazy">
+        <img src="img/f-office.jpg" alt="Современный офис" loading="lazy">
+        <img src="img/f-code.jpg" alt="Разработка" loading="lazy">
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ КАК РАБОТАЕМ ═══ -->
   <section id="how">
     <div class="wrap">
-      <div class="sec-head reveal"><h2>02 · Как работаем</h2><span class="rule"></span></div>
+      <div class="sec-head reveal"><h2>03 · Как работаем</h2><span class="rule"></span></div>
       <h2 class="sec-lead reveal">Четыре шага от разговора до работающего решения</h2>
       <div class="steps">
         <div class="step reveal"><div class="n">STEP 01</div><h3>Разговор</h3><p>Вы рассказываете, как всё устроено сейчас и что болит. Я задаю вопросы — обычно клиент сам называет главную проблему.</p></div>
@@ -444,7 +514,7 @@ footer .lbl{letter-spacing:.1em}
   <!-- ═══ РАБОТЫ ═══ -->
   <section id="works">
     <div class="wrap">
-      <div class="sec-head reveal"><h2>03 · Что уже сделано</h2><span class="rule"></span></div>
+      <div class="sec-head reveal"><h2>04 · Что уже сделано</h2><span class="rule"></span></div>
       <h2 class="sec-lead reveal">Готовые решения, которые можно потрогать</h2>
       <p class="sec-sub reveal">Не картинки в портфолио — рабочие вещи. Приложение можно открыть с телефона, боту написать прямо сейчас.</p>
 
@@ -474,7 +544,7 @@ footer .lbl{letter-spacing:.1em}
   <!-- ═══ ПОЧЕМУ Я ═══ -->
   <section id="why">
     <div class="wrap">
-      <div class="sec-head reveal"><h2>04 · Почему со мной удобно</h2><span class="rule"></span></div>
+      <div class="sec-head reveal"><h2>05 · Почему со мной удобно</h2><span class="rule"></span></div>
       <h2 class="sec-lead reveal">Работаю напрямую, отвечаю лично и не беру денег за то, чего вы не видели</h2>
 
       <div class="grid grid-2" style="margin-top:34px">
@@ -505,7 +575,7 @@ footer .lbl{letter-spacing:.1em}
   <!-- ═══ ЦИФРЫ ═══ -->
   <section id="numbers">
     <div class="wrap">
-      <div class="sec-head reveal"><h2>05 · Что это даёт</h2><span class="rule"></span></div>
+      <div class="sec-head reveal"><h2>06 · Что это даёт</h2><span class="rule"></span></div>
       <div class="stats reveal" style="margin-top:34px">
         <div class="stat"><b><em>24/7</em></b><span class="lbl">заявки принимаются ночью и в выходные</span></div>
         <div class="stat"><b>0</b><span class="lbl">пропущенных обращений</span></div>
