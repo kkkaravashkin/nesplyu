@@ -356,6 +356,49 @@ footer .lbl{letter-spacing:.1em}
   .contact{padding:30px 20px}
   .card{padding:22px}
 }
+
+/* ═══ MOTION: живые появления и микроанимации ═══ */
+@keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes glowPulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes slideRight{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* секции всплывают по очереди */
+.reveal{animation:riseIn .85s cubic-bezier(.22,1,.36,1) both}
+.reveal:nth-child(2){animation-delay:.08s}
+.reveal:nth-child(3){animation-delay:.16s}
+
+/* линия под заголовком растёт слева направо */
+.sec-head .rule{transform-origin:left;animation:slideRight .9s .25s cubic-bezier(.22,1,.36,1) both}
+
+/* карточки: мягкий подъём и подсветка рамки */
+.card{transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s}
+.card:hover{transform:translateY(-6px);border-color:rgba(155,133,217,.4);
+  box-shadow:0 22px 48px -22px rgba(120,90,200,.5)}
+
+/* фото: лёгкий зум при наведении */
+.pic{overflow:hidden;border-radius:var(--r-md)}
+.pic img{transition:transform .7s cubic-bezier(.22,1,.36,1),filter .5s}
+
+/* лента фото: по очереди */
+.photoband img{animation:riseIn .7s both}
+.photoband img:nth-child(1){animation-delay:.05s}
+.photoband img:nth-child(2){animation-delay:.13s}
+.photoband img:nth-child(3){animation-delay:.21s}
+.photoband img:nth-child(4){animation-delay:.29s}
+
+/* латунный акцент дышит */
+.badge,.price-tag{animation:glowPulse 4s ease-in-out infinite}
+
+/* кнопки: отклик на нажатие */
+.btn:active{transform:translateY(0) scale(.985)}
+.btn-primary:hover{box-shadow:0 18px 40px -16px rgba(155,133,217,.65)}
+
+/* уважаем настройку «меньше движения» */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+}
+
 </style>
 </head>
 <body>
@@ -656,5 +699,47 @@ if (!('IntersectionObserver' in window)) {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
 }
 </script>
+
+<script>
+/* параллакс фонов и всплытие секций по скроллу — без библиотек */
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var bg = document.querySelectorAll('.has-bg, #contact');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY;
+      bg.forEach(function(el, i){
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          var shift = (window.innerHeight - r.top) * (i ? 0.035 : 0.055);
+          el.style.setProperty('--bg-shift', Math.min(shift, 60).toFixed(1) + 'px');
+        }
+      });
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* появление блоков по мере прокрутки */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; io.unobserve(e.target); }
+      });
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal, .photoband img, .card').forEach(function(el){
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        el.style.animationPlayState = 'paused';
+        io.observe(el);
+      }
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
